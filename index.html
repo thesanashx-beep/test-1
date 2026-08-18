@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.G.Senul Hansana Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Dark Theme (Default) */
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --accent-gold: #e5a93b;
+            --text-main: #ffffff;
+            --text-muted: #a1a1a1;
+            --pill-bg: #1c1c1e;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --input-bg: #000000;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --accent-gold: #d48806;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --pill-bg: #e9ecef;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --input-bg: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar - Fixed Dark Theme Color */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(15, 23, 42, 0.75); /* Fixed Dark Background */
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100%;
+            background: var(--card-bg);
+            z-index: 1001;
+            padding: 40px 20px;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+        }
+
+        .side-drawer.active {
+            left: 0;
+        }
+
+        .side-drawer ul {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .side-drawer li {
+            margin-bottom: 20px;
+        }
+
+        .side-drawer a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .side-drawer a.active {
+            color: var(--accent-gold);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Hero Section with Background Photo */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('WhatsApp Image 2026-08-17 at 22.18.481.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff;
+background: 
+        linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, var(--bg-color) 100%), 
+        url('WhatsApp Image 2026-08-17 at 22.18.481.jpeg');
+        
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero p.tagline {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: #dddddd;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .featured-card {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 16px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+        }
+
+        .featured-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .featured-info h4 {
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .featured-info p {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--pill-bg);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .pill-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .content-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .content-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 650px) {
+            .works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-card:hover .card-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .gallery-details {
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .gallery-details h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .work-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .gallery-details span {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .package-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .package-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .package-features li {
+            margin-bottom: 8px;
+        }
+
+        .btn-select {
+            background: var(--accent-gold);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .booking-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .btn-submit {
+            background: var(--accent-gold);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            display: none;
+            background: #1b4332;
+            color: #2ec4b6;
+            border: 1px solid #2ec4b6;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .quick-links {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .badge {
+            background: var(--accent-gold);
+            color: #ffffff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--pill-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+                🌙 Dark
+            </button>
+            <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+        </div>
+    </header>
+
+    <div class="side-drawer" id="sideDrawer">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#presets">Presets <span class="badge">Soon</span></a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Hero Section with Photo Background -->
+    <div class="hero">
+        <h1>M.G.SenulHansana Photography</h1>
+        <p class="tagline">Capturing moments, creating timeless visual stories in Sri Lanka</p>
+
+        <div class="featured-card">
+            <img src="WhatsApp Image 2026-08-03 at 22.29.40.jpeg" alt="Featured Cover">
+            <div class="featured-info">
+                <h4>M.G.Senul Hansana</h4>
+                <p>Major lk - owner</p>
+                <a href="#portfolio" style="color: var(--accent-gold); text-decoration: underline; font-size: 0.8rem;">View Album</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="about">
+        <div class="content-card">
+            <div class="pill-tag">
+                <span class="pill-dot"></span> About the Artist
+            </div>
+            <h2>M.G.Senul Hansana</h2>
+            <p>Welcome to my official portfolio. Here, passion meets precision. I am dedicated to capturing compelling visual narratives, framing real emotion, and crafting timeless photographs across portraits, events, and commercial work.</p>
+            <a href="#contact" class="btn-link">More About Me &rarr;</a>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="pill-tag">
+                <span class="pill-dot"></span> Portfolio
+            </div>
+            <h2>Recently Completed Works</h2>
+            <p style="color: var(--text-muted);">Explore some of my latest photography, coverage, and visual edits.</p>
+        </div>
+
+        <div class="works-grid">
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="news 1.jpg" alt="Event Work 1">
+                    <span class="category-badge">Event Coverage</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Event Photography</h3>
+                        <p class="work-meta">Color Grading & Parade Photography</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="night.jpg" alt="Night Work 2">
+                    <span class="category-badge">Night & Landscape</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Night & Fireworks Coverage</h3>
+                        <p class="work-meta">Long Exposure Shots</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="match.jpg" alt="Sports Work 3">
+                    <span class="category-badge">Sports</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Sports & Matches</h3>
+                        <p class="work-meta">Action Photography</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="work4.jpg" alt="Portrait Work 4">
+                    <span class="category-badge">Portraits</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Cinematic Portraits</h3>
+                        <p class="work-meta">85mm Prime Photography</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="pill-tag">
+                <span class="pill-dot"></span> Pricing
+            </div>
+            <h2>Photography Packages</h2>
+            <p style="color: var(--text-muted);">ඔබට ගැළපෙන Package එක තෝරාගන්න</p>
+        </div>
+
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>Basic Portrait</h3>
+                <div class="package-price">Rs. 15,000</div>
+                <ul class="package-features">
+                    <li>✔ 1 Hour Shoot</li>
+                    <li>✔ 10 Softcopy Retouched Photos</li>
+                    <li>✔ Unlimited Raw Images</li>
+                </ul>
+                <button class="btn-select" onclick="selectPackage('Basic Portrait')">Select Package</button>
+            </div>
+
+            <div class="package-card" style="border-color: var(--accent-gold);">
+                <h3>Event Coverage</h3>
+                <div class="package-price">Rs. 35,000</div>
+                <ul class="package-features">
+                    <li>✔ Full Event Coverage</li>
+                    <li>✔ Color Graded All Photos</li>
+                    <li>✔ Highlight Video Short</li>
+                </ul>
+                <button class="btn-select" onclick="selectPackage('Event Coverage')">Select Package</button>
+            </div>
+
+            <div class="package-card">
+                <h3>Cinematic / Sports</h3>
+                <div class="package-price">Rs. 25,000</div>
+                <ul class="package-features">
+                    <li>✔ Action / Sports Shots</li>
+                    <li>✔ Prime Lens Photography</li>
+                    <li>✔ Advanced Color Grading</li>
+                </ul>
+                <button class="btn-select" onclick="selectPackage('Cinematic / Sports')">Select Package</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+        <div class="booking-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div class="pill-tag">
+                    <span class="pill-dot"></span> Reservation
+                </div>
+                <h2>Book Your Shoot</h2>
+                <p style="color: var(--text-muted);">විස්තර පුරවා Direct Website එක හරහා Submit කරන්න</p>
+            </div>
+
+            <form id="directBookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label>Your Name (ඔබගේ නම)</label>
+                    <input type="text" name="name" required placeholder="Enter full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number (දුරකථන අංකය)</label>
+                    <input type="tel" name="phone" required placeholder="07X XXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label>Select Package (Package එක)</label>
+                    <select name="package" id="packageSelect" required>
+                        <option value="">-- Choose a Package --</option>
+                        <option value="Basic Portrait">Basic Portrait - Rs. 15,000</option>
+                        <option value="Event Coverage">Event Coverage - Rs. 35,000</option>
+                        <option value="Cinematic / Sports">Cinematic / Sports - Rs. 25,000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Event Date (දිනය)</label>
+                    <input type="date" name="event_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Location / Details (ස්ථානය / වෙනත් විස්තර)</label>
+                    <textarea name="location" rows="3" placeholder="Matara / Galle / Colombo..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Booking Now</button>
+            </form>
+
+            <div id="statusMessage" class="success-message">
+                ✓ Thank you! Your booking request has been submitted successfully. We will contact you shortly!
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="pill-tag">
+            <span class="pill-dot"></span> Stay in Touch
+        </div>
+        <h2>Get in Touch</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Available for events, portrait sessions, and commercial projects worldwide.</p>
+
+        <h3 style="margin-top: 30px;">Quick Links</h3>
+        <ul class="quick-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#presets">Lightroom Presets <span class="badge">Coming Soon</span></a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <h3>Contact Details</h3>
+        <p style="color: var(--text-muted); margin-top: 10px;">
+            📧 mgshansana@gmail.com<br>
+            📞 +94 763547910<br>
+            📍 Matara / Colombo, Sri Lanka
+        </p>
+
+        <div class="social-icons">
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">YT</a>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 40px; text-align: center;">
+            © 2026 M.G.Senul Hansana Photography. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            const currentTheme = body.getAttribute('data-theme');
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '☀️ Light';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '🌙 Dark';
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById('sideDrawer').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function selectPackage(packageName) {
+            document.getElementById('packageSelect').value = packageName;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const form = document.getElementById("directBookingForm");
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
+            const response = await fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                document.getElementById("statusMessage").style.display = "block";
+                form.reset();
+            } else {
+                alert("Submission failed. Please check Formspree ID or try again.");
+            }
+        });
+    </script>
+</body>
+</html>
