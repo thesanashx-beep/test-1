@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.G.Senul Hansana Photography</title>
+    <!-- Font Awesome Icons for Instagram, Facebook, WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -13,7 +16,6 @@
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Dark Theme (Default) */
         :root {
             --bg-color: #0b0b0b;
             --card-bg: #141414;
@@ -25,7 +27,6 @@
             --input-bg: #000000;
         }
 
-        /* Light Theme */
         [data-theme="light"] {
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
@@ -44,7 +45,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation Bar - Fixed Dark Theme Color */
         header {
             position: fixed;
             top: 20px;
@@ -52,7 +52,7 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 1100px;
-            background: rgba(15, 23, 42, 0.75); /* Fixed Dark Background */
+            background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
             border-radius: 40px;
             padding: 12px 24px;
@@ -113,28 +113,11 @@
             box-shadow: 5px 0 15px rgba(0,0,0,0.2);
         }
 
-        .side-drawer.active {
-            left: 0;
-        }
-
-        .side-drawer ul {
-            list-style: none;
-            margin-top: 40px;
-        }
-
-        .side-drawer li {
-            margin-bottom: 20px;
-        }
-
-        .side-drawer a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        .side-drawer a.active {
-            color: var(--accent-gold);
-        }
+        .side-drawer.active { left: 0; }
+        .side-drawer ul { list-style: none; margin-top: 40px; }
+        .side-drawer li { margin-bottom: 20px; }
+        .side-drawer a { color: var(--text-main); text-decoration: none; font-size: 1.1rem; }
+        .side-drawer a.active { color: var(--accent-gold); }
 
         .overlay {
             position: fixed;
@@ -146,12 +129,8 @@
             z-index: 1000;
             display: none;
         }
+        .overlay.active { display: block; }
 
-        .overlay.active {
-            display: block;
-        }
-
-        /* Hero Section with Background Photo */
         .hero {
             position: relative;
             min-height: 85vh;
@@ -161,27 +140,14 @@
             align-items: center;
             text-align: center;
             padding: 120px 20px 40px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('WhatsApp Image 2026-08-17 at 22.18.481.jpeg');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, var(--bg-color) 100%), url('new2.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             color: #ffffff;
-background: 
-        linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, var(--bg-color) 100%), 
-        url('WhatsApp Image 2026-08-17 at 22.18.481.jpeg');
-        
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #ffffff;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; }
         .hero p.tagline {
             font-family: 'Georgia', serif;
             font-style: italic;
@@ -212,15 +178,8 @@ background:
             object-fit: cover;
         }
 
-        .featured-info h4 {
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-
-        .featured-info p {
-            font-size: 0.85rem;
-            color: #aaaaaa;
-        }
+        .featured-info h4 { font-size: 1.1rem; color: #ffffff; }
+        .featured-info p { font-size: 0.85rem; color: #aaaaaa; }
 
         section {
             padding: 60px 20px;
@@ -255,16 +214,8 @@ background:
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        .content-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .content-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
+        .content-card h2 { font-size: 1.8rem; margin-bottom: 15px; }
+        .content-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
 
         .btn-link {
             color: var(--accent-gold);
@@ -282,9 +233,7 @@ background:
         }
 
         @media (min-width: 650px) {
-            .works-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .works-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .gallery-card {
@@ -315,9 +264,7 @@ background:
             transition: transform 0.4s ease;
         }
 
-        .gallery-card:hover .card-image-wrapper img {
-            transform: scale(1.05);
-        }
+        .gallery-card:hover .card-image-wrapper img { transform: scale(1.05); }
 
         .category-badge {
             position: absolute;
@@ -338,22 +285,9 @@ background:
             align-items: flex-start;
         }
 
-        .gallery-details h3 {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .work-meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .gallery-details span {
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
+        .gallery-details h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 4px; }
+        .work-meta { font-size: 0.8rem; color: var(--text-muted); }
+        .gallery-details span { color: var(--accent-gold); font-size: 0.85rem; font-weight: bold; }
 
         .packages-grid {
             display: grid;
@@ -376,18 +310,8 @@ background:
             border-color: var(--accent-gold);
         }
 
-        .package-card h3 {
-            font-size: 1.3rem;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .package-price {
-            font-size: 1.6rem;
-            color: var(--accent-gold);
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .package-card h3 { font-size: 1.3rem; color: var(--text-main); margin-bottom: 10px; }
+        .package-price { font-size: 1.6rem; color: var(--accent-gold); font-weight: bold; margin-bottom: 15px; }
 
         .package-features {
             list-style: none;
@@ -397,9 +321,7 @@ background:
             text-align: left;
         }
 
-        .package-features li {
-            margin-bottom: 8px;
-        }
+        .package-features li { margin-bottom: 8px; }
 
         .btn-select {
             background: var(--accent-gold);
@@ -420,17 +342,8 @@ background:
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9rem; }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -473,19 +386,9 @@ background:
             border-top: 1px solid var(--border-color);
         }
 
-        .quick-links {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .quick-links li {
-            margin-bottom: 12px;
-        }
-
-        .quick-links a {
-            color: var(--text-main);
-            text-decoration: none;
-        }
+        .quick-links { list-style: none; margin: 20px 0; }
+        .quick-links li { margin-bottom: 12px; }
+        .quick-links a { color: var(--text-main); text-decoration: none; }
 
         .badge {
             background: var(--accent-gold);
@@ -497,15 +400,16 @@ background:
             margin-left: 8px;
         }
 
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
+        /* Updated Social Icons CSS */
+        .social-icons { 
+            display: flex; 
+            gap: 15px; 
+            margin-top: 30px; 
         }
 
         .social-icon {
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: var(--pill-bg);
             display: flex;
@@ -513,8 +417,15 @@ background:
             justify-content: center;
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
             border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
         }
     </style>
 </head>
@@ -525,9 +436,7 @@ background:
             <img src="logo.png" alt="Logo">
         </div>
         <div class="header-actions">
-            <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
-                🌙 Dark
-            </button>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
             <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
         </div>
     </header>
@@ -548,7 +457,6 @@ background:
     </div>
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Hero Section with Photo Background -->
     <div class="hero">
         <h1>M.G.SenulHansana Photography</h1>
         <p class="tagline">Capturing moments, creating timeless visual stories in Sri Lanka</p>
@@ -565,9 +473,7 @@ background:
 
     <section id="about">
         <div class="content-card">
-            <div class="pill-tag">
-                <span class="pill-dot"></span> About the Artist
-            </div>
+            <div class="pill-tag"><span class="pill-dot"></span> About the Artist</div>
             <h2>M.G.Senul Hansana</h2>
             <p>Welcome to my official portfolio. Here, passion meets precision. I am dedicated to capturing compelling visual narratives, framing real emotion, and crafting timeless photographs across portraits, events, and commercial work.</p>
             <a href="#contact" class="btn-link">More About Me &rarr;</a>
@@ -576,9 +482,7 @@ background:
 
     <section id="portfolio">
         <div style="text-align: center; margin-bottom: 30px;">
-            <div class="pill-tag">
-                <span class="pill-dot"></span> Portfolio
-            </div>
+            <div class="pill-tag"><span class="pill-dot"></span> Portfolio</div>
             <h2>Recently Completed Works</h2>
             <p style="color: var(--text-muted);">Explore some of my latest photography, coverage, and visual edits.</p>
         </div>
@@ -644,9 +548,7 @@ background:
 
     <section id="packages">
         <div style="text-align: center; margin-bottom: 30px;">
-            <div class="pill-tag">
-                <span class="pill-dot"></span> Pricing
-            </div>
+            <div class="pill-tag"><span class="pill-dot"></span> Pricing</div>
             <h2>Photography Packages</h2>
             <p style="color: var(--text-muted);">ඔබට ගැළපෙන Package එක තෝරාගන්න</p>
         </div>
@@ -690,14 +592,12 @@ background:
     <section id="booking">
         <div class="booking-section">
             <div style="text-align: center; margin-bottom: 20px;">
-                <div class="pill-tag">
-                    <span class="pill-dot"></span> Reservation
-                </div>
+                <div class="pill-tag"><span class="pill-dot"></span> Reservation</div>
                 <h2>Book Your Shoot</h2>
                 <p style="color: var(--text-muted);">විස්තර පුරවා Direct Website එක හරහා Submit කරන්න</p>
             </div>
 
-            <form id="directBookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="directBookingForm" action="https://script.google.com/macros/s/AKfycbzDmk01wq-rS-fcNIf_GbG78vPh2Lmar1m4aO72X-qUvx6qBE8oKSALTKD45nwiyqj8/exec" method="POST">
                 <div class="form-group">
                     <label>Your Name (ඔබගේ නම)</label>
                     <input type="text" name="name" required placeholder="Enter full name">
@@ -706,6 +606,11 @@ background:
                 <div class="form-group">
                     <label>Phone Number (දුරකථන අංකය)</label>
                     <input type="tel" name="phone" required placeholder="07X XXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address (විද්‍යුත් තැපෑල)</label>
+                    <input type="email" name="email" required placeholder="example@gmail.com">
                 </div>
 
                 <div class="form-group">
@@ -728,7 +633,7 @@ background:
                     <textarea name="location" rows="3" placeholder="Matara / Galle / Colombo..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Submit Booking Now</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Submit Booking Now</button>
             </form>
 
             <div id="statusMessage" class="success-message">
@@ -738,9 +643,7 @@ background:
     </section>
 
     <footer id="contact">
-        <div class="pill-tag">
-            <span class="pill-dot"></span> Stay in Touch
-        </div>
+        <div class="pill-tag"><span class="pill-dot"></span> Stay in Touch</div>
         <h2>Get in Touch</h2>
         <p style="color: var(--text-muted); margin-bottom: 20px;">Available for events, portrait sessions, and commercial projects worldwide.</p>
 
@@ -759,13 +662,20 @@ background:
         <p style="color: var(--text-muted); margin-top: 10px;">
             📧 mgshansana@gmail.com<br>
             📞 +94 763547910<br>
-            📍 Matara / Colombo, Sri Lanka
+            📍No,216 Old Galle Road,Weligama,Sri Lanka
         </p>
 
+        <!-- Clickable Social Icons -->
         <div class="social-icons">
-            <a href="#" class="social-icon">IG</a>
-            <a href="#" class="social-icon">FB</a>
-            <a href="#" class="social-icon">YT</a>
+            <a href="https://www.instagram.com/m.g.senul?igsi=b3praDExdGs2bHV4" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1GPU6uQaQN/" target="_blank" rel="noopener noreferrer" class="social-icon" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/message/ZDJIMHVEAW7SK1" target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
         </div>
 
         <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 40px; text-align: center;">
@@ -799,20 +709,34 @@ background:
         }
 
         const form = document.getElementById("directBookingForm");
-        form.addEventListener("submit", async function(event) {
+        form.addEventListener("submit", function(event) {
             event.preventDefault();
-            const data = new FormData(event.target);
-            const response = await fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
+            const submitBtn = document.getElementById("submitBtn");
+            submitBtn.innerText = "Submitting...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData).toString();
+
+            fetch(form.action, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params
+            })
+            .then(() => {
                 document.getElementById("statusMessage").style.display = "block";
                 form.reset();
-            } else {
-                alert("Submission failed. Please check Formspree ID or try again.");
-            }
+                submitBtn.innerText = "Submit Booking Now";
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                alert("Submission failed. Please try again.");
+                submitBtn.innerText = "Submit Booking Now";
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
