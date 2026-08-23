@@ -114,7 +114,19 @@
         }
 
         .side-drawer.active { left: 0; }
-        .side-drawer ul { list-style: none; margin-top: 40px; }
+        .side-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .side-drawer ul { list-style: none; margin-top: 30px; }
         .side-drawer li { margin-bottom: 20px; }
         .side-drawer a { color: var(--text-main); text-decoration: none; font-size: 1.1rem; }
         .side-drawer a.active { color: var(--accent-gold); }
@@ -400,7 +412,6 @@
             margin-left: 8px;
         }
 
-        /* Updated Social Icons CSS */
         .social-icons { 
             display: flex; 
             gap: 15px; 
@@ -427,6 +438,19 @@
             border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
+
+        /* Scroll Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -437,27 +461,30 @@
         </div>
         <div class="header-actions">
             <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
-            <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Open Menu">&#9776;</button>
         </div>
     </header>
 
     <div class="side-drawer" id="sideDrawer">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+        <div class="side-drawer-header">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <button class="close-btn" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         </div>
         <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#booking">Book Now</a></li>
-            <li><a href="#presets">Presets <span class="badge">Soon</span></a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#" class="active" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">Portfolio</a></li>
+            <li><a href="#packages" onclick="toggleMenu()">Packages</a></li>
+            <li><a href="#booking" onclick="toggleMenu()">Book Now</a></li>
+            <li><a href="#presets" onclick="toggleMenu()">Presets <span class="badge">Soon</span></a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
         </ul>
     </div>
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <div class="hero">
+    <div class="hero reveal">
         <h1>M.G.SenulHansana Photography</h1>
         <p class="tagline">Capturing moments, creating timeless visual stories in Sri Lanka</p>
 
@@ -471,7 +498,7 @@
         </div>
     </div>
 
-    <section id="about">
+    <section id="about" class="reveal">
         <div class="content-card">
             <div class="pill-tag"><span class="pill-dot"></span> About the Artist</div>
             <h2>M.G.Senul Hansana</h2>
@@ -480,7 +507,7 @@
         </div>
     </section>
 
-    <section id="portfolio">
+    <section id="portfolio" class="reveal">
         <div style="text-align: center; margin-bottom: 30px;">
             <div class="pill-tag"><span class="pill-dot"></span> Portfolio</div>
             <h2>Recently Completed Works</h2>
@@ -488,7 +515,7 @@
         </div>
 
         <div class="works-grid">
-            <div class="gallery-card">
+            <div class="gallery-card reveal">
                 <div class="card-image-wrapper">
                     <img src="news 1.jpg" alt="Event Work 1">
                     <span class="category-badge">Event Coverage</span>
@@ -502,7 +529,7 @@
                 </div>
             </div>
 
-            <div class="gallery-card">
+            <div class="gallery-card reveal">
                 <div class="card-image-wrapper">
                     <img src="night.jpg" alt="Night Work 2">
                     <span class="category-badge">Night & Landscape</span>
@@ -516,7 +543,7 @@
                 </div>
             </div>
 
-            <div class="gallery-card">
+            <div class="gallery-card reveal">
                 <div class="card-image-wrapper">
                     <img src="match.jpg" alt="Sports Work 3">
                     <span class="category-badge">Sports</span>
@@ -530,7 +557,7 @@
                 </div>
             </div>
 
-            <div class="gallery-card">
+            <div class="gallery-card reveal">
                 <div class="card-image-wrapper">
                     <img src="Tradition through the lens📸..Photographer- M.G.Senul Hansana Photography 0763547910Dress Desig.jpg" alt="Portrait Work 4">
                     <span class="category-badge">Portraits</span>
@@ -546,7 +573,7 @@
         </div>
     </section>
 
-    <section id="packages">
+    <section id="packages" class="reveal">
         <div style="text-align: center; margin-bottom: 30px;">
             <div class="pill-tag"><span class="pill-dot"></span> Pricing</div>
             <h2>Photography Packages</h2>
@@ -554,7 +581,7 @@
         </div>
 
         <div class="packages-grid">
-            <div class="package-card">
+            <div class="package-card reveal">
                 <h3>Basic Portrait</h3>
                 <div class="package-price">Rs. 15,000</div>
                 <ul class="package-features">
@@ -565,7 +592,7 @@
                 <button class="btn-select" onclick="selectPackage('Basic Portrait')">Select Package</button>
             </div>
 
-            <div class="package-card" style="border-color: var(--accent-gold);">
+            <div class="package-card reveal" style="border-color: var(--accent-gold);">
                 <h3>Event Coverage</h3>
                 <div class="package-price">Rs. 35,000</div>
                 <ul class="package-features">
@@ -576,7 +603,7 @@
                 <button class="btn-select" onclick="selectPackage('Event Coverage')">Select Package</button>
             </div>
 
-            <div class="package-card">
+            <div class="package-card reveal">
                 <h3>Cinematic / Sports</h3>
                 <div class="package-price">Rs. 25,000</div>
                 <ul class="package-features">
@@ -589,7 +616,7 @@
         </div>
     </section>
 
-    <section id="booking">
+    <section id="booking" class="reveal">
         <div class="booking-section">
             <div style="text-align: center; margin-bottom: 20px;">
                 <div class="pill-tag"><span class="pill-dot"></span> Reservation</div>
@@ -599,22 +626,22 @@
 
             <form id="directBookingForm" action="https://script.google.com/macros/s/AKfycbzDmk01wq-rS-fcNIf_GbG78vPh2Lmar1m4aO72X-qUvx6qBE8oKSALTKD45nwiyqj8/exec" method="POST">
                 <div class="form-group">
-                    <label>Your Name (ඔබගේ නම)</label>
-                    <input type="text" name="name" required placeholder="Enter full name">
+                    <label for="name">Your Name (ඔබගේ නම)</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter full name">
                 </div>
 
                 <div class="form-group">
-                    <label>Phone Number (දුරකථන අංකය)</label>
-                    <input type="tel" name="phone" required placeholder="07X XXXXXXX">
+                    <label for="phone">Phone Number (දුරකථන අංකය)</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="07X XXXXXXX">
                 </div>
 
                 <div class="form-group">
-                    <label>Email Address (විද්‍යුත් තැපෑල)</label>
-                    <input type="email" name="email" required placeholder="example@gmail.com">
+                    <label for="email">Email Address (විද්‍යුත් තැපෑල)</label>
+                    <input type="email" id="email" name="email" required placeholder="example@gmail.com">
                 </div>
 
                 <div class="form-group">
-                    <label>Select Package (Package එක)</label>
+                    <label for="packageSelect">Select Package (Package එක)</label>
                     <select name="package" id="packageSelect" required>
                         <option value="">-- Choose a Package --</option>
                         <option value="Basic Portrait">Basic Portrait - Rs. 15,000</option>
@@ -624,13 +651,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Event Date (දිනය)</label>
-                    <input type="date" name="event_date" required>
+                    <label for="event_date">Event Date (දිනය)</label>
+                    <input type="date" id="event_date" name="event_date" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Location / Details (ස්ථානය / වෙනත් විස්තර)</label>
-                    <textarea name="location" rows="3" placeholder="Matara / Galle / Colombo..."></textarea>
+                    <label for="location">Location / Details (ස්ථානය / වෙනත් විස්තර)</label>
+                    <textarea id="location" name="location" rows="3" placeholder="Matara / Galle / Colombo..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">Submit Booking Now</button>
@@ -642,7 +669,7 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <footer id="contact" class="reveal">
         <div class="pill-tag"><span class="pill-dot"></span> Stay in Touch</div>
         <h2>Get in Touch</h2>
         <p style="color: var(--text-muted); margin-bottom: 20px;">Available for events, portrait sessions, and commercial projects worldwide.</p>
@@ -662,7 +689,7 @@
         <p style="color: var(--text-muted); margin-top: 10px;">
             📧 mgshansana@gmail.com<br>
             📞 +94 763547910<br>
-            📍No,216 Old Galle Road,Weligama,Sri Lanka
+            📍 No.216 Old Galle Road, Weligama, Sri Lanka
         </p>
 
         <!-- Clickable Social Icons -->
@@ -737,6 +764,23 @@
                 submitBtn.innerText = "Submit Booking Now";
                 submitBtn.disabled = false;
             });
+        });
+
+        // Scroll Reveal Observer Script
+        document.addEventListener("DOMContentLoaded", function () {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            reveals.forEach((el) => observer.observe(el));
         });
     </script>
 </body>
