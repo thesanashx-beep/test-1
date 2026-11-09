@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.G.Senul Hansana Photography</title>
+    <title>M.G.Senul Hansana Photography & Graphic Design</title>
     <!-- Font Awesome Icons for Instagram, Facebook, WhatsApp -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -152,7 +152,7 @@
             align-items: center;
             text-align: center;
             padding: 120px 20px 40px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, var(--bg-color) 100%), url('new2.jpeg');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, var(--bg-color) 100%), url('abstract-background-with-soft-flowing-waves-elegant-gold-beige-tones-luxury-design_1172922-3031.avif');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -238,6 +238,33 @@
             gap: 5px;
         }
 
+        /* Filter Controls */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--pill-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gold);
+            color: #ffffff;
+            border-color: var(--accent-gold);
+        }
+
         .works-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -255,6 +282,10 @@
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, border-color 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .gallery-card.hide {
+            display: none;
         }
 
         .gallery-card:hover {
@@ -457,7 +488,7 @@
 
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="newlogo.png" alt="Logo">
         </div>
         <div class="header-actions">
             <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
@@ -476,7 +507,7 @@
             <li><a href="#" class="active" onclick="toggleMenu()">Home</a></li>
             <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
             <li><a href="#portfolio" onclick="toggleMenu()">Portfolio</a></li>
-            <li><a href="#packages" onclick="toggleMenu()">Packages</a></li>
+            <li><a href="#packages" onclick="toggleMenu()">Packages & Services</a></li>
             <li><a href="#booking" onclick="toggleMenu()">Book Now</a></li>
             <li><a href="#presets" onclick="toggleMenu()">Presets <span class="badge">Soon</span></a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
@@ -485,8 +516,8 @@
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
     <div class="hero reveal">
-        <h1>M.G.SenulHansana Photography</h1>
-        <p class="tagline">Capturing moments, creating timeless visual stories in Sri Lanka</p>
+        <h1>M.G.Senul Hansana Photography</h1>
+        <p class="tagline">Capturing moments, creating timeless visual stories & graphic designs in Sri Lanka</p>
 
         <div class="featured-card">
             <img src="WhatsApp Image 2026-08-03 at 22.29.40.jpeg" alt="Featured Cover">
@@ -502,20 +533,28 @@
         <div class="content-card">
             <div class="pill-tag"><span class="pill-dot"></span> About the Artist</div>
             <h2>M.G.Senul Hansana</h2>
-            <p>Welcome to my official portfolio. Here, passion meets precision. I am dedicated to capturing compelling visual narratives, framing real emotion, and crafting timeless photographs across portraits, events, and commercial work.</p>
+            <p>Welcome to my official portfolio. Here, passion meets precision. I am dedicated to capturing compelling visual narratives and crafting creative graphic design solutions ranging from branding to digital artwork.</p>
             <a href="#contact" class="btn-link">More About Me &rarr;</a>
         </div>
     </section>
 
     <section id="portfolio" class="reveal">
-        <div style="text-align: center; margin-bottom: 30px;">
+        <div style="text-align: center; margin-bottom: 20px;">
             <div class="pill-tag"><span class="pill-dot"></span> Portfolio</div>
             <h2>Recently Completed Works</h2>
-            <p style="color: var(--text-muted);">Explore some of my latest photography, coverage, and visual edits.</p>
+            <p style="color: var(--text-muted);">Explore my latest photography coverage and graphic design projects.</p>
+        </div>
+
+        <!-- Portfolio Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all')">All Works</button>
+            <button class="filter-btn" onclick="filterGallery('photography')">Photography</button>
+            <button class="filter-btn" onclick="filterGallery('graphic-design')">Graphic Design</button>
         </div>
 
         <div class="works-grid">
-            <div class="gallery-card reveal">
+            <!-- Photography Item 1 -->
+            <div class="gallery-card reveal" data-category="photography">
                 <div class="card-image-wrapper">
                     <img src="news 1.jpg" alt="Event Work 1">
                     <span class="category-badge">Event Coverage</span>
@@ -529,7 +568,8 @@
                 </div>
             </div>
 
-            <div class="gallery-card reveal">
+            <!-- Photography Item 2 -->
+            <div class="gallery-card reveal" data-category="photography">
                 <div class="card-image-wrapper">
                     <img src="night.jpg" alt="Night Work 2">
                     <span class="category-badge">Night & Landscape</span>
@@ -543,7 +583,8 @@
                 </div>
             </div>
 
-            <div class="gallery-card reveal">
+            <!-- Photography Item 3 -->
+            <div class="gallery-card reveal" data-category="photography">
                 <div class="card-image-wrapper">
                     <img src="match.jpg" alt="Sports Work 3">
                     <span class="category-badge">Sports</span>
@@ -557,7 +598,8 @@
                 </div>
             </div>
 
-            <div class="gallery-card reveal">
+            <!-- Photography Item 4 -->
+            <div class="gallery-card reveal" data-category="photography">
                 <div class="card-image-wrapper">
                     <img src="Tradition through the lens📸..Photographer- M.G.Senul Hansana Photography 0763547910Dress Desig.jpg" alt="Portrait Work 4">
                     <span class="category-badge">Portraits</span>
@@ -570,20 +612,50 @@
                     <span>2026</span>
                 </div>
             </div>
+
+            <!-- Graphic Design Item 1 -->
+            <div class="gallery-card reveal" data-category="graphic-design">
+                <div class="card-image-wrapper">
+                    <img src="images.jpg" alt="Graphic Design 1">
+                    <span class="category-badge">Branding</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Logo & Brand Identity</h3>
+                        <p class="work-meta">Vector Illustration & Branding</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
+
+            <!-- Graphic Design Item 2 -->
+            <div class="gallery-card reveal" data-category="graphic-design">
+                <div class="card-image-wrapper">
+                    <img src="RAHULA COLLEGE SCIENCE.png" alt="Graphic Design 2">
+                    <span class="category-badge">Social Media</span>
+                </div>
+                <div class="gallery-details">
+                    <div>
+                        <h3>Event Flyer Design</h3>
+                        <p class="work-meta">Poster & Social Media Graphic</p>
+                    </div>
+                    <span>2026</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="packages" class="reveal">
         <div style="text-align: center; margin-bottom: 30px;">
-            <div class="pill-tag"><span class="pill-dot"></span> Pricing</div>
-            <h2>Photography Packages</h2>
-            <p style="color: var(--text-muted);">ඔබට ගැළපෙන Package එක තෝරාගන්න</p>
+            <div class="pill-tag"><span class="pill-dot"></span> Pricing & Services</div>
+            <h2>Packages & Services</h2>
+            <p style="color: var(--text-muted);">ඔබට අවශ්‍ය Photography හෝ Graphic Design සේවාව තෝරාගන්න</p>
         </div>
 
         <div class="packages-grid">
             <div class="package-card reveal">
                 <h3>Basic Portrait</h3>
-                <div class="package-price">Rs. 15,000</div>
+                <div class="package-price"></div>
                 <ul class="package-features">
                     <li>✔ 1 Hour Shoot</li>
                     <li>✔ 10 Softcopy Retouched Photos</li>
@@ -594,7 +666,7 @@
 
             <div class="package-card reveal" style="border-color: var(--accent-gold);">
                 <h3>Event Coverage</h3>
-                <div class="package-price">Rs. 35,000</div>
+                <div class="package-price"></div>
                 <ul class="package-features">
                     <li>✔ Full Event Coverage</li>
                     <li>✔ Color Graded All Photos</li>
@@ -604,14 +676,14 @@
             </div>
 
             <div class="package-card reveal">
-                <h3>Cinematic / Sports</h3>
-                <div class="package-price">Rs. 25,000</div>
+                <h3>Graphic Design Project</h3>
+                <div class="package-price"></div>
                 <ul class="package-features">
-                    <li>✔ Action / Sports Shots</li>
-                    <li>✔ Prime Lens Photography</li>
-                    <li>✔ Advanced Color Grading</li>
+                    <li>✔ Custom Logo & Branding</li>
+                    <li>✔ Social Media Posters & Flyers</li>
+                    <li>✔ Source Files Provided (PSD/AI)</li>
                 </ul>
-                <button class="btn-select" onclick="selectPackage('Cinematic / Sports')">Select Package</button>
+                <button class="btn-select" onclick="selectPackage('Graphic Design Project')">Select Service</button>
             </div>
         </div>
     </section>
@@ -620,7 +692,7 @@
         <div class="booking-section">
             <div style="text-align: center; margin-bottom: 20px;">
                 <div class="pill-tag"><span class="pill-dot"></span> Reservation</div>
-                <h2>Book Your Shoot</h2>
+                <h2>Book Your Shoot / Design Project</h2>
                 <p style="color: var(--text-muted);">විස්තර පුරවා Direct Website එක හරහා Submit කරන්න</p>
             </div>
 
@@ -641,23 +713,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="packageSelect">Select Package (Package එක)</label>
+                    <label for="packageSelect">Select Service / Package (සේවාව තෝරන්න)</label>
                     <select name="package" id="packageSelect" required>
-                        <option value="">-- Choose a Package --</option>
-                        <option value="Basic Portrait">Basic Portrait - Rs. 15,000</option>
-                        <option value="Event Coverage">Event Coverage - Rs. 35,000</option>
-                        <option value="Cinematic / Sports">Cinematic / Sports - Rs. 25,000</option>
+                        <option value="">-- Choose a Service --</option>
+                        <option value="Basic Portrait">Basic Portrait (Photography)</option>
+                        <option value="Event Coverage">Event Coverage (Photography)</option>
+                        <option value="Cinematic / Sports">Cinematic / Sports (Photography)</option>
+                        <option value="Graphic Design Project">Graphic Design Project (Branding / Posters)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="event_date">Event Date (දිනය)</label>
+                    <label for="event_date">Target Date / Deadline (දිනය)</label>
                     <input type="date" id="event_date" name="event_date" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="location">Location / Details (ස්ථානය / වෙනත් විස්තර)</label>
-                    <textarea id="location" name="location" rows="3" placeholder="Matara / Galle / Colombo..."></textarea>
+                    <label for="location">Project Details / Location (විස්තර හෝ ස්ථානය)</label>
+                    <textarea id="location" name="location" rows="3" placeholder="Explain your design requirement or location details..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">Submit Booking Now</button>
@@ -672,14 +745,14 @@
     <footer id="contact" class="reveal">
         <div class="pill-tag"><span class="pill-dot"></span> Stay in Touch</div>
         <h2>Get in Touch</h2>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Available for events, portrait sessions, and commercial projects worldwide.</p>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Available for events, portrait sessions, graphic design, and commercial projects worldwide.</p>
 
         <h3 style="margin-top: 30px;">Quick Links</h3>
         <ul class="quick-links">
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#packages">Packages</a></li>
+            <li><a href="#packages">Packages & Services</a></li>
             <li><a href="#booking">Book Now</a></li>
             <li><a href="#presets">Lightroom Presets <span class="badge">Coming Soon</span></a></li>
             <li><a href="#contact">Contact</a></li>
@@ -733,6 +806,24 @@
         function selectPackage(packageName) {
             document.getElementById('packageSelect').value = packageName;
             document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* Category Filter Logic */
+        function filterGallery(category) {
+            const cards = document.querySelectorAll('.gallery-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
         }
 
         const form = document.getElementById("directBookingForm");
